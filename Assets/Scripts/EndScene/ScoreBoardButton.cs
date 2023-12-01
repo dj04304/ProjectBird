@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ScoreBoardButton : MonoBehaviour
 {
-    // Å¬¸¯ ½Ã ScoreBoard°¡ ÆË¾÷Ã¢À¸·Î ¿­¸®´Â ScoreBoard ¹öÆ°ÀÇ ½ºÅ©¸³Æ®ÀÔ´Ï´Ù.
-    // ÆË¾÷Ã¢ÀÌ ¿­·ÁÀÖ´Â »óÅÂ¿¡¼­ ´Ù½Ã ´©¸£¸é ÆË¾÷Ã¢ÀÌ ´ÝÈ÷°Ô ¸¸µé¾ú½À´Ï´Ù.
+    // í´ë¦­ ì‹œ ScoreBoardê°€ íŒì—…ì°½ìœ¼ë¡œ ì—´ë¦¬ëŠ” ScoreBoard ë²„íŠ¼ì˜ ìŠ¤í¬ë¦½íŠ¸ìž…ë‹ˆë‹¤.
+    // íŒì—…ì°½ì´ ì—´ë ¤ìžˆëŠ” ìƒíƒœì—ì„œ ë‹¤ì‹œ ëˆ„ë¥´ë©´ íŒì—…ì°½ì´ ë‹«ížˆê²Œ ë§Œë“¤ì—ˆìŠµë‹ˆë‹¤.
 
     private GameObject ScoreBrd;
     private bool ScoreBrdVisible;

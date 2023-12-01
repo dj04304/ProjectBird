@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EndSceneManager : MonoBehaviour
 {
-    // EndSceneÀ¸·Î µé¾î¿À´Â °æ¿ì ÀÛµ¿ÇØ¾ßµÇ´Â ÀÛ¾÷µéÀ» ³Ö¾ú½À´Ï´Ù.
-    // ÀÛµ¿ÇØ¾ßµÇ´Â ÀÛ¾÷µé
-    // 1. È°¼ºÈ­µÈ ScoreBoard¸¦ ´İ¾ÆÁÖ±â
+    // EndSceneìœ¼ë¡œ ë“¤ì–´ì˜¤ëŠ” ê²½ìš° ì‘ë™í•´ì•¼ë˜ëŠ” ì‘ì—…ë“¤ì„ ë„£ì—ˆìŠµë‹ˆë‹¤.
+    // ì‘ë™í•´ì•¼ë˜ëŠ” ì‘ì—…ë“¤
+    // 1. í™œì„±í™”ëœ ScoreBoardë¥¼ ë‹«ì•„ì£¼ê¸°
 
     private GameObject ScoreBrd;
     private bool ScoreBrdVisible;
