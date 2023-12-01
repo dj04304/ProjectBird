@@ -1,31 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ScoreBoardManager : MonoBehaviour
 {
-    private int OneScore = 5;
-    private int TwoScore = 4;
-    private int ThrScore = 3;
-    private int FouScore = 2;
-
-    private GameObject OneS = GameObject.Find("BestScoreText");
-    private GameObject TwoS = GameObject.Find("2ndScoreText");
-    private GameObject ThrS = GameObject.Find("3ndScoreText");
-    private GameObject FouS = GameObject.Find("4ndScoreText");
+    public TextMeshProUGUI BestScoreText;
+    public TextMeshProUGUI SecondScoreText;
+    public TextMeshProUGUI ThirdScoreText;
+    public TextMeshProUGUI FourthScore;
 
     private List<int> highScores = new List<int>();
 
     private void Start()
     {
         LoadScores();
+        DisplayScores();
     }
 
 
     void LoadScores()
     {
         highScores.Clear();
-        for (int i = 1; i <= 3; i++)
+        for (int i = 1; i <= 4; i++)
         {
             int score = PlayerPrefs.GetInt("HighScore" + i, 0);
             highScores.Add(score);
@@ -34,10 +31,9 @@ public class ScoreBoardManager : MonoBehaviour
 
     void DisplayScores()
     {
-    //    OneS.Text = highScores[0];
-    //    TwoS.Text = highScores[1];
-    //    ThrS.Text = highScores[2];
-    //    FouS.Text = highScores[3];
-    // 위에 Text를 TMP로 해서 가져와서 입력되도록
+        BestScoreText.text = highScores[0].ToString("N2");
+        SecondScoreText.text = highScores[1].ToString("N2");
+        ThirdScoreText.text = highScores[2].ToString("N2");
+        FourthScore.text = highScores[3].ToString("N2");
     }
 }
