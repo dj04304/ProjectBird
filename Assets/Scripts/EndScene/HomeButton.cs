@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class HomeButton : MonoBehaviour
 {
-    // Å¬¸¯ ½Ã StartScene(Home)À¸·Î ÀÌµ¿ÇÏ´Â Home ¹öÆ°ÀÇ ½ºÅ©¸³Æ®ÀÔ´Ï´Ù.
+    // í´ë¦­ ì‹œ StartScene(Home)ìœ¼ë¡œ ì´ë™í•˜ëŠ” Home ë²„íŠ¼ì˜ ìŠ¤í¬ë¦½íŠ¸ì…ë‹ˆë‹¤.
     public void OnHomeBtnClick()
     {
-        Debug.Log("Start SceneÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù");
+        Debug.Log("Start Sceneìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤");
 
         //SceneManager.LoadScene("StartScene");
     }

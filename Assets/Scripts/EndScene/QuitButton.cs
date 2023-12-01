@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class QuitButton : MonoBehaviour
 {
-    // Å¬¸¯ ½Ã °ÔÀÓÀÌ Á¾·áµÇ´Â Quit ¹öÆ°ÀÇ ½ºÅ©¸³Æ®ÀÔ´Ï´Ù.
-    // Application.Quit(); Àº ¿¡µğÅÍ »ó¿¡¼­´Â ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù.
+    // í´ë¦­ ì‹œ ê²Œì„ì´ ì¢…ë£Œë˜ëŠ” Quit ë²„íŠ¼ì˜ ìŠ¤í¬ë¦½íŠ¸ì…ë‹ˆë‹¤.
+    // Application.Quit(); ì€ ì—ë””í„° ìƒì—ì„œëŠ” ì‘ë™í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
     public void OnQuitBtnClick()
     {
         Application.Quit();
