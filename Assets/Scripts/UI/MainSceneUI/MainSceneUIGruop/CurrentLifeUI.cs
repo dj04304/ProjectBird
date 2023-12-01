@@ -36,22 +36,13 @@ public class CurrentLifeUI : MonoBehaviour
     private void Awake()
     {
         _currentLife = gameObject;
-        CurrentLifeChange += 2;
+        CurrentLifeChange += 2; // 임시로 UI 보여주기 위해 넣어준 라이프값, 라이프 변수 및 상호작용이 구축되면 제거함
         LifeImageToggle();
-    }
-
-    private void Start()
-    {
-        
-    }
-
-    private void Update()
-    {
-        
     }
 
     private void LifeImageToggle()
     {
+        // 원래는 LifeImage를 필드에 저장해둬야 하는데 일단은 이대로 갑니다
         for (int i = 1; i <= _life; i++)
         {
             _currentLife.transform.Find("LifeImage" + i.ToString()).gameObject.SetActive(true);
