@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class RePlayButton : MonoBehaviour
 {
-    // Å¬¸¯ ½Ã MainSceneÀ¸·Î ÀÌµ¿ÇÏ´Â Replay ¹öÆ°ÀÇ ½ºÅ©¸³Æ®ÀÔ´Ï´Ù.
+    // í´ë¦­ ì‹œ MainSceneìœ¼ë¡œ ì´ë™í•˜ëŠ” Replay ë²„íŠ¼ì˜ ìŠ¤í¬ë¦½íŠ¸ì…ë‹ˆë‹¤.
     public void OnReplayBtnClick()
     {
-        Debug.Log("Main SceneÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù");
+        Debug.Log("Main Sceneìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤");
 
         //SceneManager.LoadScene("MainScene");
     }
