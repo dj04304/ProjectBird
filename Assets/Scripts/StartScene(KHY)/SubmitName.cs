@@ -36,7 +36,6 @@ public class SubmitName : MonoBehaviour
             Debug.Log("Name Save Complete!");
             GetNameWarning.SetActive(false);
         }
-        
     }
 
     public void QuitNameScreen()
