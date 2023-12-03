@@ -14,7 +14,7 @@ public class MonsterManager : MonoBehaviour
     {
         monstersList = new List<GameObject>[prefabs.Length];
 
-        // List ÃÊ±âÈ­
+        // List ì´ˆê¸°í™”
         for(int i = 0; i < monstersList.Length; i++)
         {
             monstersList[i] = new List<GameObject>(); 
@@ -26,7 +26,7 @@ public class MonsterManager : MonoBehaviour
     {
         GameObject select = null;
 
-        // ºñÈ°¼ºÈ­µÈ ¿ÀºêÁ§Æ®°¡ ÀÖ´Ù¸é °ÔÀÓ¿ÀºêÁ§Æ®¿¡ Á¢±ÙÇÏ¿© true°ªÀ» ÁØ´Ù.
+        // ë¹„í™œì„±í™”ëœ ì˜¤ë¸Œì íŠ¸ê°€ ìˆë‹¤ë©´ ê²Œì„ì˜¤ë¸Œì íŠ¸ì— ì ‘ê·¼í•˜ì—¬ trueê°’ì„ ì¤€ë‹¤.
         foreach (GameObject objs in monstersList[index])
         {
             if (!objs.activeSelf)
@@ -37,13 +37,33 @@ public class MonsterManager : MonoBehaviour
             }
         }
 
-        // null°ªÀÌ µé¾î¿Â´Ù¸é »õ·ÎÀÌ »ı¼ºÇÏ°í select¿¡ ÇÒ´ç
+        // nullê°’ì´ ë“¤ì–´ì˜¨ë‹¤ë©´ ìƒˆë¡œì´ ìƒì„±í•˜ê³  selectì— í• ë‹¹
         if (select == null) 
         {
-            // Instantiate -> º¹Á¦ÇÏ¿© »ı¼ºÇÏ´Â ÇÔ¼ö , transform -> ÇÏÀÌ¾î¶óÅ°Ã¢À» °ü¸®ÇÏ±â À§ÇØ ³Ö¾îÁÜ
+            // Instantiate -> ë³µì œí•˜ì—¬ ìƒì„±í•˜ëŠ” í•¨ìˆ˜ , transform -> í•˜ì´ì–´ë¼í‚¤ì°½ì„ ê´€ë¦¬í•˜ê¸° ìœ„í•´ ë„£ì–´ì¤Œ
             select = Instantiate(prefabs[index], transform);
 
-            //monstersList¿¡ select Ãß°¡ÇØÁÜ
+            OwlMonster owlComponent = select.GetComponent<OwlMonster>();
+           
+            if(prefabs[index].name == "Owl")
+            {
+                owlComponent.SetOwlHealth(2);
+                owlComponent.SetOwlScore(400);
+            }
+            else
+            {
+                Monster monsterComponent = select.GetComponent<Monster>();
+                monsterComponent.health = 1;
+                monsterComponent.score = 100;
+            }
+            // ë°°ì—´ì˜ ì²« ë²ˆì§¸ ëª¬ìŠ¤í„°ê°€ "Owl"ì´ë¼ê³  ê°€ì •í•˜ê³  ì²´ë ¥ì„ 2ë¡œ ì„¤ì •
+                
+            //Debug.Log("ë¶€ì—‰ì´ ì²´ë ¥: " + monsterComponent.health);
+            //Debug.Log("??" + monsterComponent.health);
+            //Debug.Log("???: " + monsterComponent.health);
+
+
+            //monstersListì— select ì¶”ê°€í•´ì¤Œ
             monstersList[index].Add(select);
         }
 
