@@ -1,56 +1,106 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 
 public class TestBallScript : MonoBehaviour
 {
+    const float C_Radian = 180f;
+    public Rigidbody2D rb;
     public float speed;
-    private Vector2 ballDirection;
-    public Rigidbody2D rigidbody;
 
-    void Start()
+    private void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
-        Launch();
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Launch()
+    private void FixedUpdate()
     {
-        float x = 3f;
-        float y = 3f;
-
-        rigidbody.velocity = new Vector2(x * speed, y * speed);
+        Vector3 pos = rb.position;
+        Vector3 movePos = pos + transform.up * speed * Time.deltaTime;
+        rb.MovePosition(movePos); // 오브젝트에 적용된 rigidbody 2D에 시간마다 일정 속도로 좌표를 움직도록 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("wall"))
+        if (collision.collider.CompareTag("TopWall"))
         {
-            ballDirection = Vector2.Reflect(ballDirection, collision.contacts[0].normal);
-
+            Vector3 tmp = transform.eulerAngles;
+            tmp.z = C_Radian - tmp.z;
+            transform.eulerAngles = tmp;
         }
-        else if (collision.gameObject.CompareTag("Paddle"))
+
+        else if (collision.collider.CompareTag("Wall"))
         {
-            float hitPoint = collision.contacts[0].point.x;
-            float paddleCenter = collision.transform.position.x;
-
-            float angle = (hitPoint - paddleCenter) * 3.0f;
-            ballDirection = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)).normalized;
+            Vector3 tmp = transform.eulerAngles;
+            tmp.z = (C_Radian * 2) - tmp.z;
+            transform.eulerAngles = tmp;
         }
-       
 
+        else if (collision.collider.CompareTag("Monster"))
+        {
+            Vector3 tmp = transform.eulerAngles;
+            int r = Random.Range(0, 2);
+
+            if (r == 0) tmp.z = C_Radian - tmp.z;
+            else tmp.z = (C_Radian * 2) - tmp.z;
+            transform.eulerAngles = tmp;
+            collision.gameObject.SetActive(false);
+        }
     }
+    //public float speed;
+    //private Vector2 ballDirection;
+    //public Rigidbody2D rigidbody;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("DeadLine"))
-        {
-            // 여기에 목숨 까이는 로직 필요
-            GameManager.Instance.IsGameOver = true;
-            Debug.Log("데드라인 넘어감");
-        }
-    }
-   
+    //void Start()
+    //{
+    //    rigidbody = GetComponent<Rigidbody2D>();
+    //    Launch();
+
+    //}
+
+    //private void Launch()
+    //{
+    //    float x = 3f;
+    //    float y = 3f;
+
+    //    rigidbody.velocity = new Vector2(x * speed, y * speed);
+    //}
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("wall"))
+    //    {
+    //        ballDirection = Vector2.Reflect(ballDirection, collision.contacts[0].normal);
+
+    //    }
+    //    else if (collision.gameObject.CompareTag("Paddle"))
+    //    {
+    //        float hitPoint = collision.contacts[0].point.x;
+    //        float paddleCenter = collision.transform.position.x;
+
+    //        float angle = (hitPoint - paddleCenter) * 3.0f;
+    //        ballDirection = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)).normalized;
+    //    }
+    //    else if (collision.gameObject.CompareTag("Monster"))
+    //    {
+    //        ballDirection = Vector2.Reflect(ballDirection, collision.contacts[0].normal);
+
+    //    }
+
+    //}
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("DeadLine"))
+    //    {
+    //        Debug.Log("값");
+    //    }
+    //}
+
+    //public void Reset()
+    //{
+    //    rigidbody.velocity = Vector2.zero;
+    //    transform.position = Vector2.zero;
+    //    Launch();
+    //}
 }

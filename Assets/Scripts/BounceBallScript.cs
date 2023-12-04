@@ -25,12 +25,13 @@ public class BounceBallScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("wall"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
             ballDirection = Vector2.Reflect(ballDirection, collision.contacts[0].normal);
         }
         else if (collision.gameObject.CompareTag("Paddle"))
         {
+
             float hitPoint = collision.contacts[0].point.x;
             float paddleCenter = collision.transform.position.x;
             float angle = (hitPoint - paddleCenter) * 2.0f;
