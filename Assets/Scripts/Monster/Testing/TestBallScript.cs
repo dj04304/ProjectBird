@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BounceBallScript : MonoBehaviour
+public class TestBallScript : MonoBehaviour
 {
     public float speed;
     private Vector2 ballDirection;
@@ -17,8 +17,8 @@ public class BounceBallScript : MonoBehaviour
 
     private void Launch()
     {
-        float x = Random.Range(0, 2) == 0 ? -1 : 1;
-        float y = Random.Range(0, 2) == 0 ? -1 : 1;
+        float x = 3f;
+        float y = 3f;
 
         rigidbody.velocity = new Vector2(x * speed, y * speed);
     }
@@ -28,15 +28,30 @@ public class BounceBallScript : MonoBehaviour
         if (collision.gameObject.CompareTag("wall"))
         {
             ballDirection = Vector2.Reflect(ballDirection, collision.contacts[0].normal);
+
         }
         else if (collision.gameObject.CompareTag("Paddle"))
         {
             float hitPoint = collision.contacts[0].point.x;
             float paddleCenter = collision.transform.position.x;
-            float angle = (hitPoint - paddleCenter) * 2.0f;
+
+            float angle = (hitPoint - paddleCenter) * 3.0f;
             ballDirection = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)).normalized;
         }
+        else if (collision.gameObject.CompareTag("Monster"))
+        {
+            ballDirection = Vector2.Reflect(ballDirection, collision.contacts[0].normal);
 
+        }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("DeadLine"))
+        {
+            Debug.Log("값");
+        }
     }
     //public void Reset()
     //{
