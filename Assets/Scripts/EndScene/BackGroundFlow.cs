@@ -14,5 +14,4 @@ public class BackGroundFlow : MonoBehaviour
         if (transform.position.x < -10f)
             transform.position = new Vector2(0, 0);
     }
-
 }
