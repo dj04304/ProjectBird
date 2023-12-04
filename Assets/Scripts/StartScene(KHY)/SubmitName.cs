@@ -8,6 +8,7 @@ public class SubmitName : MonoBehaviour
 {
     public GameObject GetNameScreen;
     public GameObject GetNameWarning;
+    public GameObject GetNameConfirm;
     public TMP_InputField GetName;
     private string PlayerName = null;
     // Start is called before the first frame update
@@ -35,6 +36,7 @@ public class SubmitName : MonoBehaviour
             PlayerPrefs.SetString("PlayerName", PlayerName);
             Debug.Log("Name Save Complete!");
             GetNameWarning.SetActive(false);
+            GetNameConfirm.SetActive(true);
         }
     }
 
@@ -50,5 +52,6 @@ public class SubmitName : MonoBehaviour
     private void GetNameInit()
     {
         GetNameWarning.SetActive(false);
+        GetNameConfirm.SetActive(false);
     }
 }
