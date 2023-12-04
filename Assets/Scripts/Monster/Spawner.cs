@@ -5,32 +5,38 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
    
-   
-    // ¸ó½ºÅÍÀÇ ½ÃÀÛÁ¡ = -2.5 , ¸ó½ºÅÍÀÇ °£°İ 0.35, ³¡Á¡ 2.5 
-    [SerializeField] private int rows;
-    [SerializeField] private int columns;
-    [SerializeField] private float spacing;
+    // ëª¬ìŠ¤í„°ì˜ ì‹œì‘ì  = -2.5
+    [SerializeField] private int rows; // ëª¬ìŠ¤í„°ì˜ ì„¸ë¡œ
+    [SerializeField] private int columns; // ëª¬ìŠ¤í„°ì˜ ê°€ë¡œ
 
-    [SerializeField] private float spawnY;
-    [SerializeField] private float spawnTimer;
+    [SerializeField] private float spacing; // ëª¬ìŠ¤í„°ì˜ ê°„ê²©
+    [SerializeField] private float speed; // ëª¬ìŠ¤í„°ì˜ ì†ë„
+
+    // ëœë¤ ìŠ¤í°ë˜ëŠ” ìœ„ì¹˜
+    [SerializeField] private float spawnY; // ìŠ¤í° ìœ„ì¹˜
+    [SerializeField] private float spawnTimer; //ìŠ¤í° ì‹œê°„
+
+    [SerializeField] private float owlProbability; // í™•ë¥ 
 
     private float timer;
-
-    private float speed = 0.35f;
     
+    private float ranProbability;
 
+    
+    // ì‹œì‘ì‹œì— ëª¬ìŠ¤í„° ë°°ì¹˜
     private void Start()
     {
         Spawn(rows, columns, transform.position.y);
     }
 
+    // ì¼ì • ì‹œê°„ë§ˆë‹¤ ëª¬ìŠ¤í„°ê°€ ë‚´ë ¤ì˜´
     private void Update()
     {
 
         MonsterMoveDown();
     }
 
-    // ÀÏÁ¤ ½Ã°£¸¶´Ù ³»·Á¿È
+    // ì¼ì • ì‹œê°„ë§ˆë‹¤ ë‚´ë ¤ì˜´
     private void MonsterMoveDown()
     {
         timer += Time.deltaTime;
@@ -38,12 +44,12 @@ public class Spawner : MonoBehaviour
         if (timer > spawnTimer)
         {
             timer = 0f;
-            Spawn(1, 15, spawnY);
+            Spawn(1, columns, spawnY);
             transform.Translate(Vector2.down * speed);
         }
     }
 
-    // °¡·Î¿­ ¼¼·Î¿­¿¡ ·£´ı»ı¼º
+    // ê°€ë¡œì—´ ì„¸ë¡œì—´ì— ëœë¤ìƒì„±
     private void Spawn(int rows, int columns, float y)
     {
 
@@ -57,22 +63,42 @@ public class Spawner : MonoBehaviour
 
     }
 
-    // ·£´ı ½ºÆù
+    // ëœë¤ ìŠ¤í°
     public void MonsterRandomSpawn(int row, int col, float y)
     {
-        GameObject monsters = GameManager.Instance.monsterManager.GetMonster(Random.Range(0, 5), transform);
+        GameObject monsters;
+        ranProbability = Random.Range(0, 100);
+
+        // ë¶€ì—‰ì´ê°€ ë‚˜ì˜¬ í™•ë¥  10í¼
+        if(ranProbability < owlProbability)
+        {
+            monsters = GameManager.Instance.monsterManager.GetMonster(0, transform);
+            //Debug.Log("ë¶€ì—‰: " + monsters.name);
+            //Debug.Log("í™•ë¥ : " + ranProbability);
+        }
+        else
+        {
+            monsters = GameManager.Instance.monsterManager.GetMonster(Random.Range(1, 5), transform);
+            //Debug.Log("ê·¸ëƒ¥ ìƒˆ: " + monsters.name);
+        }
+
 
         if (monsters != null)
         {
+            
             float startX = -2.45f;
 
             Vector2 spawnPos = new Vector2(startX + col * spacing, y + row * spacing);
             monsters.transform.position = spawnPos;
 
+            //Debug.Log(transform.position);
+            //Debug.Log("yì¶•: " + y);
+            //Debug.Log("transform: " + y + row * spacing);
+
         }
         else
         {
-            Debug.Log("Monster »ı¼º ½ÇÆĞ");
+            Debug.Log("Monster ìƒì„± ì‹¤íŒ¨");
         }
 
     }
