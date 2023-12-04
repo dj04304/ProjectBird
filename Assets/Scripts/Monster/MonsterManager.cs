@@ -48,7 +48,8 @@ public class MonsterManager : MonoBehaviour
 
             OwlMonster owlComponent = select.GetComponent<OwlMonster>();
             EagleMonster eagleComponent = select.GetComponent<EagleMonster>();
-            if(prefabs[index].name == "Owl")
+            RanBirdMonster RanBirdComponent = select.GetComponent<RanBirdMonster>();
+            if (prefabs[index].name == "Owl")
             {
                 owlComponent.SetOwlHealth(2);
                 owlComponent.SetOwlScore(400);
@@ -58,9 +59,14 @@ public class MonsterManager : MonoBehaviour
                 eagleComponent.SetEagleHealth(1);
                 eagleComponent.SetEagleScore(100);
             }
+            else if(prefabs[index].name == "RanBird")
+            {
+                RanBirdComponent.SetRanMonHealth(1);
+                RanBirdComponent.SetRanMonScore(100);
+            }
             else
             {
-                Monster monsterComponent = select.GetComponent<Monster>();
+                Monster monsterComponent = select.AddComponent<Monster>();
                 monsterComponent.health = 1;
                 monsterComponent.score = 100;
             }

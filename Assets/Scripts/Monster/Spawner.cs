@@ -79,14 +79,20 @@ public class Spawner : MonoBehaviour
             //Debug.Log("부엉: " + monsters.name);
             //Debug.Log("확률: " + ranProbability);
         }
+        // 독수리 확률
         else if (ranProbability > owlProbability && ranProbability <= eagleProbability)
         {
             monsters = GameManager.Instance.monsterManager.GetMonster(1, transform);
             //Debug.Log("독:" + monsters.name);
         }
+        else if (ranProbability > owlProbability && ranProbability <= eagleProbability)
+        {
+            monsters = GameManager.Instance.monsterManager.GetMonster(2, transform);
+            //Debug.Log("독:" + monsters.name);
+        }
         else
         {
-            monsters = GameManager.Instance.monsterManager.GetMonster(Random.Range(2, 5), transform);
+            monsters = GameManager.Instance.monsterManager.GetMonster(Random.Range(2, 6), transform);
             //Debug.Log("그냥 새: " + monsters.name);
         }
 

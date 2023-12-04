@@ -56,29 +56,20 @@ public class EagleMonster : Monster
         //hitsRight.CopyTo(hits, 0);
         //hitsLeft.CopyTo(hits, hitsRight.Length);
 
-        Debug.Log("x축: " + transform.position.x);
-        Debug.Log("y축: " + transform.position.y);
+        //Debug.Log("x축: " + transform.position.x);
+        //Debug.Log("y축: " + transform.position.y);
 
-        Debug.Log("hitRight: " + hitsLeft.Length);
-        Debug.Log("hitRight: " + hitsRight.Length);
-        Debug.Log("rayOrigin: " + rayOrigin);
+        //Debug.Log("hitRight: " + hitsLeft.Length);
+        //Debug.Log("hitRight: " + hitsRight.Length);
+        //Debug.Log("rayOrigin: " + rayOrigin);
         
-        //foreach (var hit in hits)
-        //{
-        //    // hit.collider에는 레이에 맞은 콜라이더 포함
-        //    if (hit.collider.gameObject != gameObject && hit.collider.TryGetComponent(out Monster monsterComponent))
-        //    {
-        //        // 몬스터를 비활성화합니다.
-        //        monsterComponent.gameObject.SetActive(false);
-        //        GameManager.Instance.scoreManager.AddScore(monsterComponent.score);
-        //    }
-        //}
     }
 
     private void ProcessHits(RaycastHit2D[] hits)
     {
         foreach (var hit in hits)
         {
+           // 현재 충돌한 게임오브젝트와 충돌한 게임오브젝트가 같지 않고, 충돌한 객체가 Monster 컴포넌트를 가지고 있을 경우 실행된다. 
             if (hit.collider.gameObject != gameObject && hit.collider.TryGetComponent(out Monster monsterComponent))
             {
                 // 몬스터를 비활성화합니다.

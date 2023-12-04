@@ -14,19 +14,19 @@ public class Monster : MonoBehaviour, IMonster
             // 몬스터 파괴
             gameObject.SetActive(false);
             GameManager.Instance.scoreManager.AddScore(_score);
-            Debug.Log("asdsad" + _score);
+            //Debug.Log("_score" + _score);
         }
     }
 
 
     // 공에 닿았을 때 몬스터 파괴
-    public virtual void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
             _health--;
 
-            //Debug.Log("MonsterHealth: " + _health);
+            //Debug.Log(gameObject.GetComponent<SpriteRenderer>().sprite);
 
             DestroyedMonster();
 
