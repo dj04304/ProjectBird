@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     public MonsterManager monsterManager; // 몬스터 매니저
     public ScoreManager scoreManager; // 스코어 매니저
 
+    private GameObject _uiManager; // UI 매니저 경로
+    private GameObject _uiManagerInstance; // 인스턴스화 된 매니저
+    private UIManager _uiManagerScript;
+
     private bool _isGameOver;
     private int _totalScore;
 
@@ -36,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        _uiManager = Resources.Load<GameObject>("Prefabs/UI/UIManager");
         if (_instance == null)
         {
             _instance = this;
@@ -48,6 +53,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        _uiManagerInstance = Instantiate(_uiManager);
+        _uiManagerScript = _uiManagerInstance.GetComponent<UIManager>();
+        _uiManagerScript.OnPauseButton += OnPause;
+    }
+
     private void Update()
     {
         if(_isGameOver)
@@ -56,8 +68,9 @@ public class GameManager : MonoBehaviour
             // 퍼즈와 동일로직 -> PauseManager
             // 혹은 바로 씬 넘어가기
             Debug.Log("Gamemanger 게임 오버!");
-            scoreManager.AddScore(_totalScore);
         }
+
+        _uiManagerScript.SendCurrentScore(_totalScore);
     }
 
     public bool IsGameOver
@@ -72,4 +85,15 @@ public class GameManager : MonoBehaviour
         set { _totalScore = value; }
     }
 
+    private void OnPause(bool _isPause)
+    {
+        if (_isPause)
+        {
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+        }
+    }
 }
