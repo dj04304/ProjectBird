@@ -22,6 +22,9 @@ public class MonsterManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 몬스터 생성 메서드
+    /// </summary>
     public GameObject GetMonster(int index, Transform transform)
     {
         GameObject select = null;
@@ -44,11 +47,16 @@ public class MonsterManager : MonoBehaviour
             select = Instantiate(prefabs[index], transform);
 
             OwlMonster owlComponent = select.GetComponent<OwlMonster>();
-           
+            EagleMonster eagleComponent = select.GetComponent<EagleMonster>();
             if(prefabs[index].name == "Owl")
             {
                 owlComponent.SetOwlHealth(2);
                 owlComponent.SetOwlScore(400);
+            }
+            else if(prefabs[index].name == "Eagle")
+            {
+                eagleComponent.SetEagleHealth(1);
+                eagleComponent.SetEagleScore(100);
             }
             else
             {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class TestBallScript : MonoBehaviour
@@ -38,11 +39,7 @@ public class TestBallScript : MonoBehaviour
             float angle = (hitPoint - paddleCenter) * 3.0f;
             ballDirection = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)).normalized;
         }
-        else if (collision.gameObject.CompareTag("Monster"))
-        {
-            ballDirection = Vector2.Reflect(ballDirection, collision.contacts[0].normal);
-
-        }
+       
 
     }
 
@@ -50,13 +47,10 @@ public class TestBallScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("DeadLine"))
         {
-            Debug.Log("값");
+            // 여기에 목숨 까이는 로직 필요
+            GameManager.Instance.IsGameOver = true;
+            Debug.Log("데드라인 넘어감");
         }
     }
-    //public void Reset()
-    //{
-    //    rigidbody.velocity = Vector2.zero;
-    //    transform.position = Vector2.zero;
-    //    Launch();
-    //}
+   
 }

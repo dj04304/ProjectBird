@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Owl 클래스, 부엉이: 체력 2, 점수 400
+/// </summary>
 public class OwlMonster : Monster
 {
 
