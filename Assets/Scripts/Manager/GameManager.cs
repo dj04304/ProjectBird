@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     private GameObject _uiManagerInstance; // 인스턴스화 된 매니저
     private UIManager _uiManagerScript;
 
-    private bool _isPause = false;
     private bool _isGameOver;
     private int _totalScore;
 
@@ -87,10 +86,8 @@ public class GameManager : MonoBehaviour
         set { _totalScore = value; }
     }
 
-    private void OnPause()
+    private void OnPause(bool _isPause)
     {
-        _isPause = !_isPause;
-
         if (_isPause)
         {
             Time.timeScale = 0.0f;
