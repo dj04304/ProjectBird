@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
             // 퍼즈와 동일로직 -> PauseManager
             // 혹은 바로 씬 넘어가기
             Debug.Log("Gamemanger 게임 오버!");
-            scoreManager.AddScore(_totalScore);
         }
 
         _uiManagerScript.SendCurrentScore(_totalScore);
