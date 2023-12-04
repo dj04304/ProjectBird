@@ -13,8 +13,12 @@ public class CurrentScoreText : MonoBehaviour
         _scoreText = transform.Find("CurrentScore").GetComponent<TMP_Text>();
     }
 
-    private void Update()
+    public int ChangeCurrentScore
     {
-        _scoreText.text = _currentScore.ToString();
+        get { return _currentScore; }
+        set { 
+            _currentScore = value;
+            _scoreText.text = _currentScore.ToString();
+        }
     }
 }

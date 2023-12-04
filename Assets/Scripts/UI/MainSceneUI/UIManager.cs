@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -7,8 +9,12 @@ public class UIManager : MonoBehaviour
     private Canvas _mainSceneUI;
     private GameObject _gameMap;
     private GameObject _pausePopup;
+    private GameObject _pausePopupInstance; // 인스턴스화 된 팝업창
 
-    private bool _isPause = false;
+    private CurrentScoreText _currentScoreText;
+    private CurrentLifeUI _currentLifeUI;
+
+    public event Action OnPauseButton;
 
     private void Awake()
     {
@@ -19,16 +25,29 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        Instantiate(_mainSceneUI);
-        Instantiate(_gameMap);
-        GameObject pauseWindow = Instantiate(_pausePopup);
-        pauseWindow.transform.parent = _mainSceneUI.transform;
+        InstantiatePrefab(out Canvas mainSceneUI);
+        _currentScoreText = mainSceneUI.transform.Find("Score").GetComponent<CurrentScoreText>();
+        SendCurrentScore(200);
     }
 
-    public void OnPauseWindow()
+    private void InstantiatePrefab(out Canvas sendmainSceneUI)
     {
-        _isPause = !_isPause;
+        Canvas mainSceneUI = Instantiate(_mainSceneUI);
+        sendmainSceneUI = mainSceneUI;
+        Instantiate(_gameMap);
+        _pausePopupInstance = Instantiate(_pausePopup);
+        _pausePopupInstance.SetActive(false);
+        _pausePopupInstance.transform.SetParent(mainSceneUI.transform, false);
+    }
 
-        _pausePopup.SetActive(_isPause);
+
+    public void PauseButtonClick()
+    {
+        OnPauseButton?.Invoke();
+    }
+
+    public void SendCurrentScore(int score)
+    {
+        _currentScoreText.ChangeCurrentScore = score;
     }
 }
