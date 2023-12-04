@@ -18,4 +18,5 @@ public class ScoreManager : MonoBehaviour
         _sumScore += score;
 
     }
+
 }

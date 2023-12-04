@@ -50,7 +50,7 @@ public class TestBallScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("DeadLine"))
         {
-            //Debug.Log("값");
+            Debug.Log("값");
         }
     }
     //public void Reset()
