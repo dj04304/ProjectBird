@@ -51,13 +51,24 @@ public class GameManager : MonoBehaviour
             // 인스턴스가 중복되어 생성될 경우 파괴해준다.
             Destroy(gameObject);
         }
+
+        // ui매니저 중복생성 방지
+        if (_uiManagerInstance != null)
+        {
+            Destroy(_uiManagerInstance);
+        }
+
+        UILoading();
     }
 
-    private void Start()
+    private void UILoading()
     {
         _uiManagerInstance = Instantiate(_uiManager);
         _uiManagerScript = _uiManagerInstance.GetComponent<UIManager>();
+
         _uiManagerScript.OnPauseButton += OnPause;
+        _uiManagerScript.OnRestartButton += GameRestart;
+        _uiManagerScript.OnHomeButton += GoHome;
     }
 
     private void Update()
@@ -95,5 +106,16 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1.0f;
         }
+    }
+
+    private void GameRestart()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("MainScene");
+    }
+
+    private void GoHome()
+    {
+        SceneManager.LoadScene("StartScene");
     }
 }

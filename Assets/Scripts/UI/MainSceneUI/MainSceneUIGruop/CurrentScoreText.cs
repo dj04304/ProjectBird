@@ -18,7 +18,7 @@ public class CurrentScoreText : MonoBehaviour
         get { return _currentScore; }
         set { 
             _currentScore = value;
-            _scoreText.text = _currentScore.ToString();
+            _scoreText.text = "현재 점수\n" + _currentScore.ToString();
         }
     }
 }
