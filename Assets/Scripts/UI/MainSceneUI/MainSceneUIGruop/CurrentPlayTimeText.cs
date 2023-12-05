@@ -18,6 +18,6 @@ public class CurrentPlayTimeText : MonoBehaviour
     private void Update()
     {
         _currentTime += Time.deltaTime;
-        _timeText.text = _currentTime.ToString("N1");
+        _timeText.text = "진행 시간\n" + _currentTime.ToString("N1");
     }
 }
