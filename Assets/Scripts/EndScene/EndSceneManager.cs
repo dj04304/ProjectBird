@@ -4,29 +4,34 @@ using UnityEngine;
 
 public class EndSceneManager : MonoBehaviour
 {
-    // EndScene으로 들어오는 경우 작동해야되는 작업들을 넣었습니다.
-    // 작동해야되는 작업들
-    // 1. 활성화된 ScoreBoard를 닫아주기
+    public GameObject ScoreBoard;
 
-    private GameObject ScoreBrd;
-    private bool ScoreBrdVisible;
-
-
-    void Start()
+    private void Awake()
     {
-        ScoreBrdClose();
+        ScoreBoard.SetActive(false);
     }
 
-    private void ScoreBrdClose()
+    public void ShowScoreBoard()
     {
-        ScoreBrd = GameObject.Find("ScoreBoard");
+        ScoreBoard.SetActive(true);
+    }
 
-        if (ScoreBrd != null)
-        {
-            ScoreBrdVisible = ScoreBrd.activeSelf;
-        }
+    public void OnHomeBtnClick()
+    {
+        Debug.Log("Start Scene으로 이동합니다");
 
-        ScoreBrdVisible = !ScoreBrdVisible;
-        ScoreBrd.SetActive(ScoreBrdVisible);
+        //SceneManager.LoadScene("StartScene");
+    }
+
+    public void OnQuitBtnClick()
+    {
+        Application.Quit();
+    }
+
+    public void OnReplayBtnClick()
+    {
+        Debug.Log("Main Scene으로 이동합니다");
+
+        //SceneManager.LoadScene("MainScene");
     }
 }
