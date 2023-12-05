@@ -6,12 +6,38 @@ using UnityEngine.SceneManagement;
 public class IntroSceneManager : MonoBehaviour
 {
     public GameObject RedBird;
+    public GameObject RedBirdAft;
+    public GameObject RedBirdAngry;
     public GameObject Egg;
     public GameObject Enemies;
 
-    private void Update()
+    private void Awake()
     {
-        if (Enemies == null)
-            Egg.SetActive(false);
+        RedBirdAft.SetActive(false);
+        RedBirdAngry.SetActive(false);
+    }
+    private void Start()
+    {
+        Invoke("ShowRedBirdAft", 5.8f);
+        Invoke("ShowRedBirdAngry", 8f);
+        Invoke("LoadStartScene", 12f);
+    }
+
+    private void ShowRedBirdAft()
+    {
+        Egg.SetActive(false);
+        RedBird.SetActive(false);
+        RedBirdAft.SetActive(true);
+    }
+
+    private void ShowRedBirdAngry()
+    {
+        RedBirdAft.SetActive(false);
+        RedBirdAngry.SetActive(true);
+    }
+
+    private void LoadStartScene()
+    {
+        SceneManager.LoadScene("StartScene");
     }
 }
