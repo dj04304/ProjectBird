@@ -19,8 +19,8 @@ public class IntroSceneManager : MonoBehaviour
     private void Start()
     {
         Invoke("ShowRedBirdAft", 5.8f);
-        Invoke("ShowRedBirdAngry", 8f);
-        Invoke("LoadStartScene", 12f);
+        Invoke("ShowRedBirdAngry", 7.5f);
+        Invoke("LoadStartScene", 10f);
     }
 
     private void ShowRedBirdAft()
