@@ -11,6 +11,7 @@ public class Monster : MonoBehaviour, IMonster
     {
         if (_health <= 0)
         {
+            //Debug.Log("몬스터 헬스: " + _health);
             // 몬스터 파괴
             gameObject.SetActive(false);
             GameManager.Instance.scoreManager.AddScore(_score);
@@ -25,7 +26,7 @@ public class Monster : MonoBehaviour, IMonster
         if (collision.gameObject.CompareTag("Ball"))
         {
             _health--;
-
+            Debug.Log("몬스터 헬스: " + _health);
             //Debug.Log(gameObject.GetComponent<SpriteRenderer>().sprite);
 
             DestroyedMonster();

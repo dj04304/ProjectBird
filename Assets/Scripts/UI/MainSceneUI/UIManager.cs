@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     private CurrentLifeUI _currentLifeUI;
     private PauseButton _pauseButtonScript;
     private PausePopup _pausePopupScript;
+    private PauseButton _pauseButton;
+    private Canvas _GameOverTxt;
 
     public event Action<bool> OnPauseButton;
     public event Action OnRestartButton;
@@ -38,11 +40,16 @@ public class UIManager : MonoBehaviour
         _currentScoreText = _mainSceneUIInstance.transform.Find("Score").GetComponent<CurrentScoreText>();
         _pausePopupScript = _pausePopupInstance.transform.GetComponent<PausePopup>();
         ManagerObjectSend();
+        _GameOverTxt = Resources.Load<Canvas>("Prefabs/UI/MainSceneUI/GameOverTxt");
     }
 
     private void Start()
     {
         OnPauseButton += OnPauseWindow;
+        ManagerObjectSend();
+
+        _GameOverTxt = Instantiate(_GameOverTxt);
+        _GameOverTxt.gameObject.SetActive(false);
     }
 
     private void InstantiatePrefab(out Canvas sendmainSceneUI)
@@ -52,6 +59,7 @@ public class UIManager : MonoBehaviour
         _pausePopupInstance = Instantiate(_pausePopup);
         _pausePopupInstance.transform.SetParent(mainSceneUI.transform, false);
         _pausePopupInstance.SetActive(false);
+
     }
 
 
@@ -94,4 +102,11 @@ public class UIManager : MonoBehaviour
         _pauseButtonScript.SetUIManager(gameObject.GetComponent<UIManager>());
         _pausePopupScript.SetUIManager(gameObject.GetComponent<UIManager>());
     }
+
+    public void SetGameOverText()
+    {
+        Debug.Log("호출?");
+        _GameOverTxt.gameObject.SetActive(true);
+    }
+
 }
