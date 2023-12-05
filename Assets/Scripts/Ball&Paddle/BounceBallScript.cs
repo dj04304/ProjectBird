@@ -67,6 +67,14 @@ public class BounceBallScript : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("death"))
+        {
+            Debug.Log("죽음");
+        }
+    }
     //public void Reset()
     //{
     //    rigidbody.velocity = Vector2.zero;

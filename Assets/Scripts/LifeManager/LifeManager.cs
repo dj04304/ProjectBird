@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class LifeManager : MonoBehaviour
 {
-    public int lifeCount;
+    private int _lifeCount;
 
-    // Start is called before the first frame update
-    void Start()
+    public int life
     {
-        
+        get { return _lifeCount; }
+        private set { _lifeCount = value; }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Dead()
     {
-        
+        if(_lifeCount != -1)
+        {
+            _lifeCount--;
+        }
+        Debug.Log("남은 생명의 수 : " + _lifeCount);
+    }
+
+    public void SuddenDead()
+    {
+        _lifeCount = 0;
+        Debug.Log("게임 오버");
     }
 }
