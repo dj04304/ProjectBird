@@ -17,6 +17,11 @@ public class PaddleController : MonoBehaviour
     // rigidbody 2D를 사용하기 위한 코드 수정
     void FixedUpdate()
     {
+        OnMove();
+    }
+
+    public void OnMove()
+    {
         horizontal = Input.GetAxis("Horizontal");
         Vector2 move = new Vector2(horizontal, 0);
         Vector2 pos = rb.position;
