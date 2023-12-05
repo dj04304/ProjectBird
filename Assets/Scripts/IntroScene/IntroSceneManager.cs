@@ -9,7 +9,6 @@ public class IntroSceneManager : MonoBehaviour
     public GameObject RedBirdAft;
     public GameObject RedBirdAngry;
     public GameObject Egg;
-    public GameObject Enemies;
 
     private void Awake()
     {
