@@ -16,7 +16,6 @@ public class UIManager : MonoBehaviour
     private CurrentLifeUI _currentLifeUI;
     private PauseButton _pauseButtonScript;
     private PausePopup _pausePopupScript;
-    private PauseButton _pauseButton;
     private Canvas _GameOverTxt;
 
     public event Action<bool> OnPauseButton;
@@ -46,7 +45,6 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         OnPauseButton += OnPauseWindow;
-        ManagerObjectSend();
 
         _GameOverTxt = Instantiate(_GameOverTxt);
         _GameOverTxt.gameObject.SetActive(false);
