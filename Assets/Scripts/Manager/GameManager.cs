@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
 
             StartCoroutine(EndSceneTransition("EndScene", 1.5f));
 
+            _isGameOver = false;
         }
 
         _uiManagerScript.SendCurrentScore(_totalScore);
