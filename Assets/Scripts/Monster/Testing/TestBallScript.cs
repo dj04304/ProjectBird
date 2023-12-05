@@ -44,7 +44,8 @@ public class TestBallScript : MonoBehaviour
             if (r == 0) tmp.z = C_Radian - tmp.z;
             else tmp.z = (C_Radian * 2) - tmp.z;
             transform.eulerAngles = tmp;
-            collision.gameObject.SetActive(false);
+            //collision.gameObject.SetActive(false);
+            //Debug.Log(collision.gameObject);
         }
     }
     //public float speed;
@@ -89,13 +90,13 @@ public class TestBallScript : MonoBehaviour
 
     //}
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("DeadLine"))
-    //    {
-    //        Debug.Log("값");
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("DeadLine"))
+        {
+            Debug.Log("값");
+        }
+     }
 
     //public void Reset()
     //{

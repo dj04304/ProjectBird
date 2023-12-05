@@ -60,14 +60,25 @@ public class GameManager : MonoBehaviour
         _uiManagerScript.OnPauseButton += OnPause;
     }
 
+    // 코루틴 사용
+    private IEnumerator EndSceneTransition(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Perform the scene transition after the delay
+        SceneManager.LoadScene(sceneName);
+    }
+
     private void Update()
     {
         if(_isGameOver)
         {
-
-            // 퍼즈와 동일로직 -> PauseManager
-            // 혹은 바로 씬 넘어가기
             Debug.Log("Gamemanger 게임 오버!");
+            _uiManagerScript.SetGameOverText();
+            Time.timeScale = 0.25f;
+
+            StartCoroutine(EndSceneTransition("EndScene", 1.5f));
+
         }
 
         _uiManagerScript.SendCurrentScore(_totalScore);

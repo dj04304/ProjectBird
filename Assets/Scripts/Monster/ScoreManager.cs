@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
     {
         GameManager.Instance.TotalScore = _sumScore;
 
-        Debug.Log("합산: " + _sumScore);
+        //Debug.Log("합산: " + _sumScore);
     }
 
     public void AddScore(int score)

@@ -18,6 +18,7 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private float owlProbability; // 부엉이 등장 확률
     [SerializeField] private float eagleProbability; // 독수리 등장 확률
+    [SerializeField] private float ranMonProbability; // 랜덤몬스터 확률
 
     private float timer;
     
@@ -85,16 +86,19 @@ public class Spawner : MonoBehaviour
             monsters = GameManager.Instance.monsterManager.GetMonster(1, transform);
             //Debug.Log("독:" + monsters.name);
         }
-        else if (ranProbability > owlProbability && ranProbability <= eagleProbability)
+        // 랜덤 몬스터 확률
+        else if (ranProbability >= ranMonProbability)
         {
             monsters = GameManager.Instance.monsterManager.GetMonster(2, transform);
-            //Debug.Log("독:" + monsters.name);
+            //Debug.Log("확률 몇개?: " + monsters.name);
         }
         else
         {
-            monsters = GameManager.Instance.monsterManager.GetMonster(Random.Range(2, 6), transform);
+            monsters = GameManager.Instance.monsterManager.GetMonster(Random.Range(3, 6), transform);
             //Debug.Log("그냥 새: " + monsters.name);
         }
+
+      
 
 
         if (monsters != null)

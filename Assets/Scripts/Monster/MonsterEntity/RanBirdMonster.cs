@@ -22,11 +22,13 @@ public class RanBirdMonster : Monster
         if(collision.gameObject.CompareTag("Ball"))
         {
             health--;
+            Debug.Log("몬스터 헬스 3333: " + health);
             //Debug.Log("작동!!");
 
             string collidedObjectName = gameObject.GetComponent<SpriteRenderer>().sprite.name;
             //Debug.Log(gameObject.name);
 
+            // Monster Tag를 가진 개수
             GameObject[] objectsWithSameName = GameObject.FindGameObjectsWithTag("Monster");
 
             //Debug.Log("알려줘: " + collidedObjectName);

@@ -52,7 +52,7 @@ public class MonsterManager : MonoBehaviour
             if (prefabs[index].name == "Owl")
             {
                 owlComponent.SetOwlHealth(2);
-                owlComponent.SetOwlScore(400);
+                owlComponent.SetOwlScore(200);
             }
             else if(prefabs[index].name == "Eagle")
             {
