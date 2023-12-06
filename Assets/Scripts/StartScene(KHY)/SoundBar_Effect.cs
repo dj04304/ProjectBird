@@ -16,6 +16,7 @@ public class SoudBar_Effect : MonoBehaviour, IPointerUpHandler
     {
         SoundBarInit();
         getSlideBarValue();
+        SoundM = GameObject.Find("SoundManager");
     }
 
     // Update is called once per frame

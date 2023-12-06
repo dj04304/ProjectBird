@@ -28,12 +28,14 @@ public class SettingManager : MonoBehaviour
     //pr
     public void QuitGame()
     {
+
         Debug.Log("QuitGame Event");
         Application.Quit();
     }
 
     public void QuitSetting()
     {
+        SoundManager.Instance.playButtonEffect();
         Debug.Log("QuitSetting Event");
         //Debug.Log(PlayerPrefs.GetFloat("EffectVolume"));
         //Debug.Log(PlayerPrefs.GetFloat("BGMVolume"));
@@ -71,6 +73,7 @@ public class SettingManager : MonoBehaviour
             selectIndex++;
         }
         PlayerPrefs.SetInt("BallSprite", selectIndex);
+        PlayerPrefs.GetInt("BallSprite");
         chanageBallSprite(selectIndex);
     }
 
