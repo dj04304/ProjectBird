@@ -6,6 +6,8 @@ public class BackGroundFlow : MonoBehaviour
 {
     public float scrollSpeed = 2f;
 
+    public Transform[] transforms;
+
     // scrollSpeed는 화면이 흐르는 속도입니다.
     // 아래에서 new Vector2(-moveX, 0)으로 한 이유는
     // 캐릭터가 오른쪽으로 이동하는 느낌을 받도록
@@ -13,10 +15,14 @@ public class BackGroundFlow : MonoBehaviour
 
     private void Update()
     {
-        float moveX = Time.deltaTime * scrollSpeed;
-        transform.Translate(new Vector2(-moveX, 0));
+        for (int i = 0; i < transforms.Length; i++)
+        {
+            float moveX = Time.deltaTime * scrollSpeed;
+            transforms[i].Translate(new Vector2(-moveX, 0));
 
-        if (transform.position.x < -10f)
-            transform.position = new Vector2(0, 0);
+            if (transforms[i].position.x < -16.23f)
+                transforms[i].position = new Vector2(16.4f, 0);
+        }
+        
     }
 }
