@@ -93,6 +93,7 @@ public class BounceBallScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("death"))
         {
+            SoundManager.Instance.playDrop();
             lifeManager.Dead();
             Invoke("Reset", 0.5f);
         }
