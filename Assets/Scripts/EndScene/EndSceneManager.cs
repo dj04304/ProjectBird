@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndSceneManager : MonoBehaviour
 {
@@ -18,9 +19,9 @@ public class EndSceneManager : MonoBehaviour
 
     public void OnHomeBtnClick()
     {
-        Debug.Log("Start Scene으로 이동합니다");
+        //Debug.Log("Start Scene으로 이동합니다");
 
-        //SceneManager.LoadScene("StartScene");
+        SceneManager.LoadScene("StartScene");
     }
 
     public void OnQuitBtnClick()
@@ -30,7 +31,7 @@ public class EndSceneManager : MonoBehaviour
 
     public void OnReplayBtnClick()
     {
-        Debug.Log("Main Scene으로 이동합니다");
+        SceneManager.LoadScene("JunTestScene");
 
         //SceneManager.LoadScene("MainScene");
     }
