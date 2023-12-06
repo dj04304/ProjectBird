@@ -25,6 +25,7 @@ public class SubmitName : MonoBehaviour
 
     public void SaveName()
     {
+        SoundManager.Instance.playButtonEffect();
         PlayerName = GetName.text;
         if((PlayerName.Length > 8) || (PlayerName.Length < 3))
         {
@@ -42,6 +43,7 @@ public class SubmitName : MonoBehaviour
 
     public void QuitNameScreen()
     {
+        SoundManager.Instance.playButtonEffect();
         GetNameWarning.SetActive(false);
         GetNameScreen.SetActive(false);
         //test
