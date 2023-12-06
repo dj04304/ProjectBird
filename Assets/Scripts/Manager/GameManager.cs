@@ -105,10 +105,12 @@ public class GameManager : MonoBehaviour
             SoundManager.Instance.playGameOver();
             _uiManagerScript.SetGameOverText();
             SaveNewScore(playerName, _totalScore);
-
+            
             Time.timeScale = 0.15f;
 
-            StartCoroutine(EndSceneTransition("EndScene", 1.2f));
+            StartCoroutine(EndSceneTransition("EndScene", 0.5f));
+
+
 
             _stopSumScore = false;
             _isGameOver = false;

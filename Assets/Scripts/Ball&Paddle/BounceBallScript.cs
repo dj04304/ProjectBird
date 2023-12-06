@@ -108,7 +108,7 @@ public class BounceBallScript : MonoBehaviour
     private void SwitchingBird()
     {
 
-        int selectBird = PlayerPrefs.GetInt("BallSprite", 3);
+        int selectBird = PlayerPrefs.GetInt("BallSprite", 1);
         Debug.Log(selectBird);
 
         switch (selectBird)
