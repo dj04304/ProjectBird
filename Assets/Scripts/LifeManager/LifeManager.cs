@@ -9,7 +9,7 @@ public class LifeManager : MonoBehaviour
     public int life
     {
         get { return _lifeCount; }
-        private set { _lifeCount = value; }
+        set { _lifeCount = value; }
     }
 
     public void Dead()
@@ -17,13 +17,20 @@ public class LifeManager : MonoBehaviour
         if(_lifeCount != -1)
         {
             _lifeCount--;
+            Debug.Log("남은 생명의 수 : " + _lifeCount);
         }
-        Debug.Log("남은 생명의 수 : " + _lifeCount);
+        else if(_lifeCount == -1)
+        {
+            Debug.Log("게임 오버");
+            GameManager.Instance.IsGameOver = true;
+        }
+
     }
 
     public void SuddenDead()
     {
         _lifeCount = 0;
         Debug.Log("게임 오버");
+        GameManager.Instance.IsGameOver = true;
     }
 }

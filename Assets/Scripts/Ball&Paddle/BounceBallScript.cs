@@ -9,10 +9,12 @@ public class BounceBallScript : MonoBehaviour
     public float speed;
     private bool isBallInPlay = false;
     public Transform target;
+    public LifeManager lifeManager;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        lifeManager.life = 3;
     }
 
     private void Update()
@@ -72,13 +74,15 @@ public class BounceBallScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("death"))
         {
-            Debug.Log("죽음");
+            lifeManager.Dead();
+            Reset();
         }
     }
-    //public void Reset()
-    //{
-    //    rigidbody.velocity = Vector2.zero;
-    //    transform.position = Vector2.zero;
-    //    Launch();
-    //}
+
+    public void Reset()
+    {
+        rb.velocity = Vector2.zero;
+        transform.position = Vector2.zero;
+        isBallInPlay = false;
+    }
 }
