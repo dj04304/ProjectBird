@@ -8,11 +8,19 @@ public class IntroSoundManager : MonoBehaviour
 {
     public AudioSource bgm;
     public AudioSource hit;
-    public float EffectVolume = 50;
+
+    public float EffectVolume = 30;
 
     void Start()
     {
-        bgm.volume = (float)0.07;
+
+    }
+
+    public void BGM()
+    {
+        bgm.volume = 10f;
+        bgm.Play();
+
     }
 
     public void Hit()
