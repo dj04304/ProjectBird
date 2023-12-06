@@ -36,6 +36,7 @@ public class UIManager : MonoBehaviour
 
         InstantiatePrefab(out Canvas mainSceneUI);
         _mainSceneUIInstance = mainSceneUI;
+        
         UiComponentLoading();
         ManagerObjectSend();
     }

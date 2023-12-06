@@ -10,22 +10,19 @@ public class ScoreBoard : MonoBehaviour
     public GameObject board;
     public TextMeshProUGUI[] ScoreNames = new TextMeshProUGUI[] { };
     public TextMeshProUGUI[] ScoreValues = new TextMeshProUGUI[] { };
+
     private string[] tempNames = new string[9];
     private string[] tempValues = new string[9];
     private string ScorePath = Application.dataPath + "/" + "Data" + "/" + "ScoreData.csv";
     // Start is called before the first frame update
     void Start()
     {
+        SaveNewScore("kim", 2000);
         ShowScore();
 
         //test
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void ShowScore()
     {
         StreamReader scoreData = new StreamReader(ScorePath);
@@ -93,6 +90,7 @@ public class ScoreBoard : MonoBehaviour
 
     public void QuitScoreBoard()
     {
+        SoundManager.Instance.playButtonEffect();
         board.SetActive(false);
     }
 }

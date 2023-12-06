@@ -10,11 +10,12 @@ public class SubmitName : MonoBehaviour
     public GameObject GetNameWarning;
     public GameObject GetNameConfirm;
     public TMP_InputField GetName;
-    private string PlayerName = null;
+    private string PlayerName = "player"; 
     // Start is called before the first frame update
     void Start()
     {
         GetNameInit();
+        PlayerPrefs.SetString("PlayerName", "player");
     }
 
     // Update is called once per frame
