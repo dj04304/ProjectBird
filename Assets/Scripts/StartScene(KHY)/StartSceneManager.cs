@@ -80,7 +80,7 @@ public class StartSceneManager : MonoBehaviour
         SoundManager.Instance.playButtonEffect();
         if (GuideIndex == GuideList.Length - 1)
         {
-            SceneManager.LoadScene("JunTestScene");
+            SceneManager.LoadScene("MainScene");
 
 
         }
