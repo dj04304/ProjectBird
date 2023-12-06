@@ -30,6 +30,7 @@ public class StartSceneManager : MonoBehaviour
 
     public void gameStart()
     {
+        SoundManager.Instance.playButtonEffect();
         Debug.Log("gameStart Event");
         MainCanvas.SetActive(false);
         GuideInit();
@@ -37,17 +38,20 @@ public class StartSceneManager : MonoBehaviour
     }
     public void setName()
     {
+        SoundManager.Instance.playButtonEffect();
         Debug.Log("setName Event");
         GetNameScreen.SetActive(true);
     }
     public void showScoreboard()
     {
         ScoreBoard.SetActive(true);
+        SoundManager.Instance.playButtonEffect();
         Debug.Log("showScoreboard Event");
     }
     public void showSetting()
     {
         Debug.Log("showSetting Event");
+        SoundManager.Instance.playButtonEffect();
         SettingCanvas.SetActive(true);
     }
     private void StartSceneInit()
@@ -57,11 +61,12 @@ public class StartSceneManager : MonoBehaviour
         GetNameScreen.SetActive(false);
         ScoreBoard.SetActive(false);
         Guide.SetActive(false);
-        GuideIndex = 0;
+        
     }
     public void GuideSelectPrev()
     {
-        if(GuideIndex != 0)
+        SoundManager.Instance.playButtonEffect();
+        if (GuideIndex != 0)
         {
             deleteGuide(GuideIndex);
             GuideIndex--;
@@ -70,9 +75,10 @@ public class StartSceneManager : MonoBehaviour
     }
     public void GuideSelectFollow()
     {
+        SoundManager.Instance.playButtonEffect();
         if (GuideIndex == GuideList.Length - 1)
         {
-            SceneManager.LoadScene("TestGameScene(KHY)");
+            SceneManager.LoadScene("MainScene");
         }
         if (GuideIndex != GuideList.Length-1)
         {
@@ -81,8 +87,15 @@ public class StartSceneManager : MonoBehaviour
             ShowGuide(GuideIndex);
         }
     }
+    public void QuitGuide()
+    {
+        SoundManager.Instance.playButtonEffect();
+        Guide.SetActive(false);
+        MainCanvas.SetActive(true);
+    }
     private void GuideInit()
     {
+        GuideIndex = 0;
         Guide.SetActive(true);
         GuideList[0].SetActive(true);
         for(int cnt=1; cnt < GuideList.Length; cnt++)
@@ -98,4 +111,5 @@ public class StartSceneManager : MonoBehaviour
     {
         GuideList[g_index].SetActive(false);
     }
+
 }
