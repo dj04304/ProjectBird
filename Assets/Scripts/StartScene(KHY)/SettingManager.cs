@@ -58,7 +58,7 @@ public class SettingManager : MonoBehaviour
         {
             selectIndex--;
         }
-        PlayerPrefs.SetInt("BallSprite", selectIndex);
+        PlayerPrefs.SetInt("BallSprite", selectIndex+1);
         chanageBallSprite(selectIndex);
     }
 
@@ -72,7 +72,7 @@ public class SettingManager : MonoBehaviour
         {
             selectIndex++;
         }
-        PlayerPrefs.SetInt("BallSprite", selectIndex);
+        PlayerPrefs.SetInt("BallSprite", selectIndex+1);
         PlayerPrefs.GetInt("BallSprite");
         chanageBallSprite(selectIndex);
     }

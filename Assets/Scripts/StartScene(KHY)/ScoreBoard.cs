@@ -23,6 +23,7 @@ public class ScoreBoard : MonoBehaviour
         //test
     }
 
+
     private void ShowScore()
     {
         StreamReader scoreData = new StreamReader(ScorePath);
