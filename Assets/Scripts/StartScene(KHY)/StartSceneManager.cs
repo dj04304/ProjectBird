@@ -13,19 +13,21 @@ public class StartSceneManager : MonoBehaviour
     public GameObject ScoreBoard;
     public GameObject Guide;
 
+    private GameObject _mainBird;
+
     public GameObject[] GuideList = new GameObject[] { };
     private int GuideIndex;
-    
+
+    private void Awake()
+    {
+        _mainBird = Resources.Load<GameObject>("Prefabs/UI/StartScene/StartBird");
+    }
+
     void Start()
     {
         StartSceneInit();
         PlayerPrefs.SetString("PlayerName", null);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _mainBird = Instantiate(_mainBird);
     }
 
     public void gameStart()
@@ -79,6 +81,8 @@ public class StartSceneManager : MonoBehaviour
         if (GuideIndex == GuideList.Length - 1)
         {
             SceneManager.LoadScene("MainScene");
+
+
         }
         if (GuideIndex != GuideList.Length-1)
         {
