@@ -11,31 +11,16 @@ public class BounceBallScript : MonoBehaviour
     public Transform target;
     public LifeManager lifeManager;
 
-    public Sprite redBird;
-    public Sprite puppleBird;
-    public Sprite blueBird;
-
-    private SpriteRenderer spriteRenderer;
-    //private SettingManager settingManager;
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        
-    }
-
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         lifeManager.life = 3;
-
-        SwitchingBird();
     }
 
     private void Update()
     {
         // 공은 현재 패들과 같이 따라가기 때문에(rigidbody가 kinematic으로 설정) 스스로 이동하기 위해 body type을 바꿔줘야 한다
-        if (Input.GetButtonDown("Jump") && !isBallInPlay) 
+        if(Input.GetButtonDown("Jump") && !isBallInPlay) 
         {
             rb.bodyType = RigidbodyType2D.Dynamic;  // rigidbody의 body type을 바꾼다
             isBallInPlay = true;            // 공이 자동으로 움직이는 상태를 판정하는 bool 값을 바꾼다
@@ -64,8 +49,6 @@ public class BounceBallScript : MonoBehaviour
             Vector3 tmp = transform.eulerAngles;
             tmp.z = C_Radian - tmp.z;
             transform.eulerAngles = tmp;
-
-            SoundManager.Instance.playBounce();
         }
 
         else if (collision.collider.CompareTag("Wall"))
@@ -73,8 +56,6 @@ public class BounceBallScript : MonoBehaviour
             Vector3 tmp = transform.eulerAngles;
             tmp.z = (C_Radian * 2) - tmp.z;
             transform.eulerAngles = tmp;
-
-            SoundManager.Instance.playBounce();
         }
 
         else if (collision.collider.CompareTag("Monster"))
@@ -103,25 +84,5 @@ public class BounceBallScript : MonoBehaviour
         rb.velocity = Vector2.zero;
         transform.position = new Vector2(target.position.x, -3.67f) ;
         isBallInPlay = false;
-    }
-
-    private void SwitchingBird()
-    {
-
-        int selectBird = PlayerPrefs.GetInt("BallSprite", 1);
-        Debug.Log(selectBird);
-
-        switch (selectBird)
-        {
-            case 1:
-                spriteRenderer.sprite = redBird;
-                break;
-             case 2:
-                spriteRenderer.sprite = puppleBird;
-                break;
-            case 3:
-                spriteRenderer.sprite = blueBird;
-                break;
-        }
     }
 }

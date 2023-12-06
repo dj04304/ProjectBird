@@ -27,8 +27,6 @@ public class TestBallScript : MonoBehaviour
             Vector3 tmp = transform.eulerAngles;
             tmp.z = C_Radian - tmp.z;
             transform.eulerAngles = tmp;
-
-            SoundManager.Instance.playBounce();
         }
 
         else if (collision.collider.CompareTag("Wall"))
@@ -36,8 +34,6 @@ public class TestBallScript : MonoBehaviour
             Vector3 tmp = transform.eulerAngles;
             tmp.z = (C_Radian * 2) - tmp.z;
             transform.eulerAngles = tmp;
-
-            SoundManager.Instance.playBounce();
         }
 
         else if (collision.collider.CompareTag("Monster"))
@@ -48,7 +44,8 @@ public class TestBallScript : MonoBehaviour
             if (r == 0) tmp.z = C_Radian - tmp.z;
             else tmp.z = (C_Radian * 2) - tmp.z;
             transform.eulerAngles = tmp;
-
+            //collision.gameObject.SetActive(false);
+            //Debug.Log(collision.gameObject);
         }
     }
     //public float speed;

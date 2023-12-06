@@ -20,7 +20,6 @@ public class CurrentLifeUI : MonoBehaviour
             if (_life != value)
             {
                 LifeImageToggle(_life, value);
-                //Debug.Log(_life);
                 
             }
 
@@ -31,21 +30,10 @@ public class CurrentLifeUI : MonoBehaviour
             else
             {
                 _life = _maxLife;
-                //Debug.Log($"최대 라이프는 {_maxLife}을 초과할 수 없습니다");
+                Debug.Log($"최대 라이프는 {_maxLife}을 초과할 수 없습니다");
             }
 
             
-        }
-    }
-
-    public int SetMaxLifeCount
-    {
-        set 
-        {
-            if (_maxLife != value)
-            {
-                _maxLife = value;
-            }
         }
     }
 
@@ -57,6 +45,11 @@ public class CurrentLifeUI : MonoBehaviour
         {
             _lifeImageObject.Add(i, _currentLife.transform.Find("LifeImage" + i.ToString()).gameObject);
         }
+    }
+
+    private void Start()
+    {
+        //CurrentLifeChange += 2; // 임시로 UI 보여주기 위해 넣어준 라이프값, 라이프 변수 및 상호작용이 구축되면 제거함    
     }
 
     private void LifeImageToggle(int currentlife, int newlife)
@@ -74,7 +67,7 @@ public class CurrentLifeUI : MonoBehaviour
         }
         else
         {
-            for (int i = currentlife; i > newlife && i > 0; i--)
+            for (int i = currentlife; i > newlife; i--)
             {
                 _lifeImageObject.TryGetValue(i, out GameObject lifeImage);
                 lifeImage.GetComponent<Animator>().SetBool(animationsBool, true);

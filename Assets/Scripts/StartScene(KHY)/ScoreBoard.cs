@@ -21,6 +21,11 @@ public class ScoreBoard : MonoBehaviour
         //test
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
     private void ShowScore()
     {
         StreamReader scoreData = new StreamReader(ScorePath);
