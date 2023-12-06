@@ -32,14 +32,12 @@ public class UIManager : MonoBehaviour
         }
         _mainSceneUI = Resources.Load<Canvas>("Prefabs/UI/MainSceneUI/MainSceneUIGroup");
         _pausePopup = Resources.Load<GameObject>("Prefabs/UI/MainSceneUI/PausePopup");
+        _GameOverTxt = Resources.Load<Canvas>("Prefabs/UI/MainSceneUI/GameOverTxt");
 
         InstantiatePrefab(out Canvas mainSceneUI);
         _mainSceneUIInstance = mainSceneUI;
-        _pauseButtonScript = _mainSceneUIInstance.transform.Find("PauseButton").GetComponent<PauseButton>();
-        _currentScoreText = _mainSceneUIInstance.transform.Find("Score").GetComponent<CurrentScoreText>();
-        _pausePopupScript = _pausePopupInstance.transform.GetComponent<PausePopup>();
+        UiComponentLoading();
         ManagerObjectSend();
-        _GameOverTxt = Resources.Load<Canvas>("Prefabs/UI/MainSceneUI/GameOverTxt");
     }
 
     private void Start()
@@ -48,6 +46,55 @@ public class UIManager : MonoBehaviour
 
         _GameOverTxt = Instantiate(_GameOverTxt);
         _GameOverTxt.gameObject.SetActive(false);
+    }
+
+    /* 라이프 UI 테스트용 변수값 증감 코드 (현재 주석처리)
+    #region
+    float time = 0.0f;
+    bool Operator = true;
+
+    private int testlife = 0;
+
+    private void Update()
+    {
+        time += Time.deltaTime;
+
+        testmethod();
+    }
+
+    private void testmethod()
+    {
+        if (testlife == 10)
+        {
+            Operator = false;
+        }
+        else if (testlife == 0)
+        {
+            Operator = true;
+        }
+
+        if (time >= 0.25f && Operator)
+        {
+            testlife += 1;
+            time = 0.0f;
+        }
+        else if (time >= 0.25f && !Operator)
+        {
+            testlife -= 1;
+            time = 0.0f;
+        }
+
+        SendCurrentLife(testlife);
+    }
+    #endregion
+    */
+
+    private void UiComponentLoading()
+    {
+        _pauseButtonScript = _mainSceneUIInstance.transform.Find("PauseButton").GetComponent<PauseButton>();
+        _currentScoreText = _mainSceneUIInstance.transform.Find("Score").GetComponent<CurrentScoreText>();
+        _pausePopupScript = _pausePopupInstance.transform.GetComponent<PausePopup>();
+        _currentLifeUI = _mainSceneUIInstance.transform.Find("Life").GetComponent<CurrentLifeUI>();
     }
 
     private void InstantiatePrefab(out Canvas sendmainSceneUI)
@@ -81,6 +128,11 @@ public class UIManager : MonoBehaviour
     public void SendCurrentScore(int score)
     {
         _currentScoreText.ChangeCurrentScore = score;
+    }
+
+    public void SendCurrentLife(int life)
+    {
+        _currentLifeUI.CurrentLifeChange = life;
     }
 
     private void OnPauseWindow(bool isPause)

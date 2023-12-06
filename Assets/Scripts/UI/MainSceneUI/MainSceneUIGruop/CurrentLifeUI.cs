@@ -6,6 +6,11 @@ public class CurrentLifeUI : MonoBehaviour
 {
     private GameObject _currentLife;
     private int _life;
+    private int _maxLife = 10;
+
+    private Dictionary<int, GameObject> _lifeImageObject = new Dictionary<int, GameObject>();
+
+    private string animationsBool = "Broken";
 
     public int CurrentLifeChange
     {
@@ -14,42 +19,59 @@ public class CurrentLifeUI : MonoBehaviour
         {
             if (_life != value)
             {
-                LifeImageToggle();
+                LifeImageToggle(_life, value);
                 
             }
 
-            if (value < 10)
+            if (value < _maxLife)
             {
                 _life = value;
             }
             else
             {
-                _life = 10;
-                Debug.Log("ÃÖ´ë ¶óÀÌÇÁ´Â 10À» ÃÊ°úÇÒ ¼ö ¾ø½À´Ï´Ù");
+                _life = _maxLife;
+                Debug.Log($"ìµœëŒ€ ë¼ì´í”„ëŠ” {_maxLife}ì„ ì´ˆê³¼í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
             }
 
             
         }
     }
 
-
     private void Awake()
     {
-        _currentLife = gameObject;
-        CurrentLifeChange += 2; // ÀÓ½Ã·Î UI º¸¿©ÁÖ±â À§ÇØ ³Ö¾îÁØ ¶óÀÌÇÁ°ª, ¶óÀÌÇÁ º¯¼ö ¹× »óÈ£ÀÛ¿ëÀÌ ±¸ÃàµÇ¸é Á¦°ÅÇÔ
-        LifeImageToggle();
+        _currentLife = gameObject;    
+
+        for (int i = 1; i <= _maxLife; i++)
+        {
+            _lifeImageObject.Add(i, _currentLife.transform.Find("LifeImage" + i.ToString()).gameObject);
+        }
     }
 
-    private void LifeImageToggle()
+    private void Start()
     {
-        // ¿ø·¡´Â LifeImage¸¦ ÇÊµå¿¡ ÀúÀåÇØµÖ¾ß ÇÏ´Âµ¥ ÀÏ´ÜÀº ÀÌ´ë·Î °©´Ï´Ù
-        for (int i = 1; i <= _life; i++)
+        //CurrentLifeChange += 2; // ìž„ì‹œë¡œ UI ë³´ì—¬ì£¼ê¸° ìœ„í•´ ë„£ì–´ì¤€ ë¼ì´í”„ê°’, ë¼ì´í”„ ë³€ìˆ˜ ë° ìƒí˜¸ìž‘ìš©ì´ êµ¬ì¶•ë˜ë©´ ì œê±°í•¨    
+    }
+
+    private void LifeImageToggle(int currentlife, int newlife)
+    {
+        int difference = newlife - currentlife;
+
+        if (difference > 0)
         {
-            _currentLife.transform.Find("LifeImage" + i.ToString()).gameObject.SetActive(true);
+            for (int i = currentlife; i < newlife; i++)
+            {
+                _lifeImageObject.TryGetValue(i+1, out GameObject lifeImage);
+                lifeImage.SetActive(true);
+                lifeImage.GetComponent<Animator>().SetBool(animationsBool, false);
+            }
         }
-        for (int i = _life + 1; i <= 10; i++)
+        else
         {
-            _currentLife.transform.Find("LifeImage" + i.ToString()).gameObject.SetActive(false);
+            for (int i = currentlife; i > newlife; i--)
+            {
+                _lifeImageObject.TryGetValue(i, out GameObject lifeImage);
+                lifeImage.GetComponent<Animator>().SetBool(animationsBool, true);
+            }
         }
     }
 }
