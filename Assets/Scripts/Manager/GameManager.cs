@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public MonsterManager monsterManager; // 몬스터 매니저
     public ScoreManager scoreManager; // 스코어 매니저
+    public LifeManager lifeManager;
 
     private GameObject _uiManager; // UI 매니저 경로
     private GameObject _uiManagerInstance; // 인스턴스화 된 매니저
@@ -17,7 +18,8 @@ public class GameManager : MonoBehaviour
     private bool _isGameOver;
     private bool _stopSumScore = true;
     private int _totalScore;
-    
+
+    private int maxLifeCount = 10;
 
     /// <summary>
     /// 싱글톤
@@ -85,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(_isGameOver)
+        if (_isGameOver)
         {
             Debug.Log("???: " + _isGameOver);
             if (_stopSumScore)
@@ -107,7 +109,7 @@ public class GameManager : MonoBehaviour
         {
             _uiManagerScript.SendCurrentScore(_totalScore);
         }
-
+        _uiManagerScript.SendCurrentLife(lifeManager.life);
     }
 
     public bool IsGameOver
