@@ -13,14 +13,12 @@ public class IntroSoundManager : MonoBehaviour
 
     void Start()
     {
-
+        bgm.volume = (float)0.1;
     }
 
     public void BGM()
     {
-        bgm.volume = 10f;
         bgm.Play();
-
     }
 
     public void Hit()
