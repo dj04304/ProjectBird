@@ -15,6 +15,7 @@ public class Monster : MonoBehaviour, IMonster
             // 몬스터 파괴
             gameObject.SetActive(false);
             GameManager.Instance.scoreManager.AddScore(_score);
+            SoundManager.Instance.playMonsterDeath(); // 몬스터 죽을때 나는 소리
             //Debug.Log("_score" + _score);
         }
     }

@@ -31,7 +31,7 @@ public class EndSceneManager : MonoBehaviour
 
     public void OnReplayBtnClick()
     {
-        SceneManager.LoadScene("JunTestScene");
+        SceneManager.LoadScene("MainScene");
 
         //SceneManager.LoadScene("MainScene");
     }
