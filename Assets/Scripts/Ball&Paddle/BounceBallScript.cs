@@ -37,7 +37,7 @@ public class BounceBallScript : MonoBehaviour
         }
         else if (!isBallInPlay)
         {
-            Vector2 move = new Vector2(target.position.x, target.position.y + 0.51f); // 타겟이 되는 오브젝(패들)의 좌표값에 위치를 추가로 수정하는 식으로 함
+            Vector2 move = new Vector2(target.position.x, target.position.y + 0.28f); // 타겟이 되는 오브젝(패들)의 좌표값에 위치를 추가로 수정하는 식으로 함
             rb.MovePosition(move);
         }
     }
@@ -82,7 +82,7 @@ public class BounceBallScript : MonoBehaviour
     public void Reset()
     {
         rb.velocity = Vector2.zero;
-        transform.position = new Vector2(target.position.x, 0);
+        transform.position = new Vector2(target.position.x, -3.67f) ;
         isBallInPlay = false;
     }
 }
