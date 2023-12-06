@@ -26,7 +26,6 @@ public class SettingManager : MonoBehaviour
     }
 
     //pr
-
     public void QuitGame()
     {
         Debug.Log("QuitGame Event");
@@ -36,7 +35,10 @@ public class SettingManager : MonoBehaviour
     public void QuitSetting()
     {
         Debug.Log("QuitSetting Event");
+        //Debug.Log(PlayerPrefs.GetFloat("EffectVolume"));
+        //Debug.Log(PlayerPrefs.GetFloat("BGMVolume"));
         SettingCanvas.SetActive(false);
+        
     }
 
     private void chanageBallSprite(int Ballindex)
