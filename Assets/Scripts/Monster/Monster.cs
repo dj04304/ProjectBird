@@ -38,10 +38,9 @@ public class Monster : MonoBehaviour, IMonster
     // monster가 deadLine까지 넘어올 경우 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("DeadLine"))
+        if(collision.gameObject.CompareTag("death"))
         {
             GameManager.Instance.IsGameOver = true;
-                
         }
     }
 

@@ -75,14 +75,14 @@ public class BounceBallScript : MonoBehaviour
         if (collision.gameObject.CompareTag("death"))
         {
             lifeManager.Dead();
-            Reset();
+            Invoke("Reset", 0.5f);
         }
     }
 
     public void Reset()
     {
         rb.velocity = Vector2.zero;
-        transform.position = Vector2.zero;
+        transform.position = new Vector2(target.position.x, 0);
         isBallInPlay = false;
     }
 }
