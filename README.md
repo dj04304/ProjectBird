@@ -83,7 +83,7 @@
 
 ## 시연 영상
 
-![프로젝트 시연영상](https://www.youtube.com/watch?si=wMofkp5eqLR7Vec9&v=dgR9kV6tJ7s&feature=youtu.be) 
+[프로젝트 시연영상](https://www.youtube.com/watch?si=wMofkp5eqLR7Vec9&v=dgR9kV6tJ7s&feature=youtu.be) 
 
 ## 구현한 기능
 
