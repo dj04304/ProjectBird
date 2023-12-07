@@ -20,8 +20,8 @@ public class BackGroundFlow : MonoBehaviour
             float moveX = Time.deltaTime * scrollSpeed;
             transforms[i].Translate(new Vector2(-moveX, 0));
 
-            if (transforms[i].position.x < -16.23f)
-                transforms[i].position = new Vector2(16.4f, 0);
+            if (transforms[i].position.x < -17.28f)
+                transforms[i].position = new Vector2(15.4f, 0);
         }
         
     }

@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     // 내용 저장
     private string[] tempNames = new string[9];
     private string[] tempValues = new string[9];
-    private string ScorePath = Application.dataPath + "/" + "Data" + "/" + "ScoreData.csv";
+    private string ScorePath = Application.dataPath + "/" + "ScoreData.csv";
 
     private bool _isGameOver;
     private bool _stopSumScore = true;
@@ -155,11 +155,16 @@ public class GameManager : MonoBehaviour
 
     private void GoHome()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("StartScene");
     }
 
     private void SaveNewScore(string Name, int score)
     {
+        if (File.Exists(ScorePath) == false)
+        {
+            CreateNewFile();
+        }
         StreamReader scoreData1 = new StreamReader(ScorePath);
 
         for (int cnt = 0; cnt < 9; cnt++)
@@ -191,6 +196,24 @@ public class GameManager : MonoBehaviour
                 sb.AppendLine(t2);
                 tempCnt++;
             }
+        }
+        StreamWriter scoreData = new StreamWriter(ScorePath);
+        scoreData.WriteLine(sb);
+        scoreData.Close();
+    }
+
+    public void CreateNewFile()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        string[] Names = new string[9] { "KQE", "DKJ", "AWQ", "IKD", "ESQ", "ZXV", "AGJ", "OED", "IKJ" };
+        string[] Scores = new string[9] { "7741", "6877", "6411", "6189", "5877", "5433", "5429", "4988", "3576" };
+
+        for (int cnt = 0; cnt < 9; cnt++)
+        {
+            string t1 = Names[cnt] + ',' + Scores[cnt];
+            sb.AppendLine(t1);
+
         }
         StreamWriter scoreData = new StreamWriter(ScorePath);
         scoreData.WriteLine(sb);
